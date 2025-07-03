@@ -65,19 +65,14 @@ fun Input(
             ),
             contentPadding = LeasingTheme.paddings.input,
         )
-        if (hint != null && errorMessage == null) {
+        if (hint != null || errorMessage == null) {
+            val text = errorMessage ?: hint ?: ""
+            val color =
+                if (errorMessage != null) LeasingTheme.colors.textError else LeasingTheme.colors.textTertiary
             Spacer(modifier = Modifier.size(4.dp))
             Text(
-                text = hint,
-                color = LeasingTheme.colors.textTertiary,
-                style = LeasingTheme.typography.paragraphRegularS
-            )
-        }
-        if (errorMessage != null) {
-            Spacer(modifier = Modifier.size(4.dp))
-            Text(
-                text = errorMessage,
-                color = LeasingTheme.colors.textError,
+                text = text,
+                color = color,
                 style = LeasingTheme.typography.paragraphRegularS
             )
         }
