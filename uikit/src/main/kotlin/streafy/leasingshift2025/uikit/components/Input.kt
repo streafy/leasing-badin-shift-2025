@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -25,7 +26,9 @@ fun Input(
 ) {
     val state = rememberTextFieldState()
 
-    Column {
+    Column(
+        modifier = modifier.width(320.dp)
+    ) {
         if (label != null) {
             Text(
                 text = label,
