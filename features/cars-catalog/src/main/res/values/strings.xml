@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Car Card -->
+    <string name="car_card_price_pattern">%1$s ₽</string>
+    <string name="car_card_price_for_14_days_pattern">%1$s ₽ за 14 дней</string>
+</resources>
