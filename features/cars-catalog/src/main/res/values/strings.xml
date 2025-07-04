@@ -8,6 +8,10 @@
     <string name="cars_catalog_search">Поиск</string>
     <string name="cars_catalog_search_placeholder">Поиск</string>
     <string name="cars_catalog_rent_dates">Даты аренды</string>
-    <string name="cars_catalog_rent_dates_placeholder">10 - 24 июля 2025 (14 дней)</string>
+    <string name="cars_catalog_rent_dates_placeholder">10 – 24 июля 2025 (14 дней)</string>
     <string name="cars_catalog_filters">Фильтры</string>
+
+    <!--    CarsCatalogFilters -->
+    <string name="cars_catalog_filters_reset_all">Сбросить все фильтры</string>
+    <string name="cars_catalog_filters_search">Найти</string>
 </resources>
