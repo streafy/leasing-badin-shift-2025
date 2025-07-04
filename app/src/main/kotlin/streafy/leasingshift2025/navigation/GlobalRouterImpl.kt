@@ -2,8 +2,9 @@ package streafy.leasingshift2025.navigation
 
 import androidx.navigation.NavHostController
 import streafy.leasingshift2025.shared.navigation.Screen
+import javax.inject.Inject
 
-class GlobalRouterImpl : GlobalRouter {
+class GlobalRouterImpl @Inject constructor() : GlobalRouter {
 
     private var navController: NavHostController? = null
 

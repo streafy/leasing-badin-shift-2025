@@ -18,9 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import streafy.leasingshift2025.features.carscatalog.R
 import streafy.leasingshift2025.features.carscatalog.domain.Car
+import streafy.leasingshift2025.features.carscatalog.presentation.CarsCatalogViewModel
 import streafy.leasingshift2025.features.carscatalog.presentation.components.CarCard
+import streafy.leasingshift2025.shared.LocalViewModelFactory
 import streafy.leasingshift2025.uikit.components.Button
 import streafy.leasingshift2025.uikit.components.ButtonVariant
 import streafy.leasingshift2025.uikit.components.Input
@@ -28,26 +31,24 @@ import streafy.leasingshift2025.uikit.theme.LeasingTheme
 
 @Composable
 fun CarsCatalogScreen(
-    onFiltersButtonClick: () -> Unit,
-    onCarCardClick: (id: String) -> Unit,
-    modifier: Modifier = Modifier
+    viewModel: CarsCatalogViewModel = viewModel(factory = LocalViewModelFactory.current)
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         header()
-        filters(onFiltersButtonClick)
+        filters { viewModel.openFiltersScreen() }
         items(
             items = Car.createMockData(),
             key = { car -> car.id }
         ) { car ->
             CarCard(
                 car = car,
-                onCarClicked = { onCarCardClick(car.id) },
+                onCarClicked = { viewModel.openCarCard(car.id) },
                 modifier = Modifier.padding(horizontal = 8.dp)
             )
         }
