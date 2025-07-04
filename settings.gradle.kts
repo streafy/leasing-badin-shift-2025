@@ -23,3 +23,4 @@ rootProject.name = "leasing-shift-2025"
 include(":app")
 include(":uikit")
 include(":features:cars-catalog")
+include(":shared")

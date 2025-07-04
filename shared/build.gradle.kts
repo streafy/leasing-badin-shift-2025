@@ -1,12 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
-    namespace = "streafy.leasingshift2025.features.carscatalog"
+    namespace = "streafy.leasingshift2025.shared"
     compileSdk = 35
 
     defaultConfig {
@@ -32,18 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    implementation(project(":uikit"))
-    implementation(project(":shared"))
 
-    implementation(libs.androidx.core.ktx)
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.material3)
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.okhttp)
 }
