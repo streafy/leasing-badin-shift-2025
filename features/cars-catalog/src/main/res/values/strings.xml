@@ -3,4 +3,11 @@
     <!--    Car Card -->
     <string name="car_card_price_pattern">%1$s ₽</string>
     <string name="car_card_price_for_14_days_pattern">%1$s ₽ за 14 дней</string>
+
+    <!--    Cars Catalog Screen -->
+    <string name="cars_catalog_search">Поиск</string>
+    <string name="cars_catalog_search_placeholder">Поиск</string>
+    <string name="cars_catalog_rent_dates">Даты аренды</string>
+    <string name="cars_catalog_rent_dates_placeholder">10 - 24 июля 2025 (14 дней)</string>
+    <string name="cars_catalog_filters">Фильтры</string>
 </resources>

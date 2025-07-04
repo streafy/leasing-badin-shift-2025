@@ -1,0 +1,96 @@
+package streafy.leasingshift2025.features.carscatalog.presentation.screens
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import streafy.leasingshift2025.features.carscatalog.R
+import streafy.leasingshift2025.features.carscatalog.domain.Car
+import streafy.leasingshift2025.features.carscatalog.presentation.components.CarCard
+import streafy.leasingshift2025.uikit.components.Button
+import streafy.leasingshift2025.uikit.components.ButtonVariant
+import streafy.leasingshift2025.uikit.components.Input
+import streafy.leasingshift2025.uikit.theme.LeasingTheme
+
+@Composable
+fun CarsCatalogScreen(
+    onFiltersButtonClick: () -> Unit,
+    onCarCardClick: (id: String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        header()
+        filters(onFiltersButtonClick)
+        items(
+            items = Car.createMockData(),
+            key = { car -> car.id }
+        ) { car ->
+            CarCard(
+                car = car,
+                onCarClicked = { onCarCardClick(car.id) },
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
+        }
+    }
+}
+
+fun LazyListScope.header() {
+    item {
+        Text(
+            text = "Автомобили",
+            modifier = Modifier.fillMaxWidth().background(LeasingTheme.colors.bgPrimary).padding(vertical = 12.dp),
+            color = LeasingTheme.colors.textPrimary,
+            textAlign = TextAlign.Start,
+            style = LeasingTheme.typography.titleLg
+        )
+    }
+}
+
+fun LazyListScope.filters(
+    onFiltersButtonClick: () -> Unit
+) {
+    item {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            Input(
+                modifier = Modifier.fillMaxWidth(),
+                label = stringResource(R.string.cars_catalog_search),
+                placeholder = stringResource(R.string.cars_catalog_search_placeholder)
+            )
+            Input(
+                modifier = Modifier.fillMaxWidth(),
+                label = stringResource(R.string.cars_catalog_rent_dates),
+                placeholder = stringResource(R.string.cars_catalog_rent_dates_placeholder)
+            )
+            Button(
+                onClick = onFiltersButtonClick,
+                modifier = Modifier.fillMaxWidth(),
+                variant = ButtonVariant.PrimaryDark
+            ) {
+                Text(text = stringResource(R.string.cars_catalog_filters))
+            }
+        }
+        Spacer(Modifier.height(16.dp))
+    }
+}
