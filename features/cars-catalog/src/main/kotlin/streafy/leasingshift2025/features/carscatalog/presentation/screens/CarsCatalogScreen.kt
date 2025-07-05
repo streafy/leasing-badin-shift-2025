@@ -13,17 +13,23 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import streafy.leasingshift2025.features.carscatalog.R
 import streafy.leasingshift2025.features.carscatalog.domain.Car
+import streafy.leasingshift2025.features.carscatalog.presentation.CarsCatalogState
 import streafy.leasingshift2025.features.carscatalog.presentation.CarsCatalogViewModel
 import streafy.leasingshift2025.features.carscatalog.presentation.components.CarCard
 import streafy.leasingshift2025.shared.LocalViewModelFactory
+import streafy.leasingshift2025.uikit.components.ErrorMessage
+import streafy.leasingshift2025.uikit.components.Loading
 import streafy.leasingshift2025.uikit.components.Button
 import streafy.leasingshift2025.uikit.components.ButtonVariant
 import streafy.leasingshift2025.uikit.components.Input
@@ -33,6 +39,12 @@ import streafy.leasingshift2025.uikit.theme.LeasingTheme
 fun CarsCatalogScreen(
     viewModel: CarsCatalogViewModel = viewModel(factory = LocalViewModelFactory.current)
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+        viewModel.getCarsCatalog()
+    }
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -42,16 +54,47 @@ fun CarsCatalogScreen(
     ) {
         header()
         filters { viewModel.openFiltersScreen() }
-        items(
-            items = Car.createMockData(),
-            key = { car -> car.id }
-        ) { car ->
-            CarCard(
-                car = car,
-                onCarClicked = { viewModel.openCarCard(car.id) },
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
+        when (val currentState = state) {
+            CarsCatalogState.Initial,
+            CarsCatalogState.Loading -> loading()
+
+            is CarsCatalogState.Content -> content(
+                cars = currentState.cars,
+                onCarClicked = { id -> viewModel.openCarCard(id) })
+
+            is CarsCatalogState.Error -> error(
+                currentState.message
+            ) { viewModel.getCarsCatalog() }
         }
+
+    }
+}
+
+fun LazyListScope.loading() {
+    item {
+        Loading()
+    }
+}
+
+fun LazyListScope.content(
+    cars: List<Car>,
+    onCarClicked: (String) -> Unit
+) {
+    items(
+        items = cars,
+        key = { car -> car.id }
+    ) { car ->
+        CarCard(
+            car = car,
+            onCarClicked = { onCarClicked(car.id) },
+            modifier = Modifier.padding(horizontal = 8.dp)
+        )
+    }
+}
+
+fun LazyListScope.error(message: String, onRetry: () -> Unit) {
+    item {
+        ErrorMessage(message, onRetry)
     }
 }
 
@@ -59,7 +102,10 @@ fun LazyListScope.header() {
     item {
         Text(
             text = "Автомобили",
-            modifier = Modifier.fillMaxWidth().background(LeasingTheme.colors.bgPrimary).padding(vertical = 12.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(LeasingTheme.colors.bgPrimary)
+                .padding(vertical = 12.dp),
             color = LeasingTheme.colors.textPrimary,
             textAlign = TextAlign.Start,
             style = LeasingTheme.typography.titleLg

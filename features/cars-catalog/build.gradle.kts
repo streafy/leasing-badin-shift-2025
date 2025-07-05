@@ -51,4 +51,5 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
+    implementation(libs.retrofit)
 }
