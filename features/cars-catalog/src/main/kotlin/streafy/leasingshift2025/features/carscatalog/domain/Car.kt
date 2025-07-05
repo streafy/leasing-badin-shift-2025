@@ -6,16 +6,4 @@ data class Car(
     val price: Int,
     val transmission: String,
     val imageUrl: String
-) {
-    companion object {
-        fun createMockData() = List(10) {
-            Car(
-                "$it",
-                "Auto $it",
-                1000,
-                "automatic",
-                imageUrl = "https://shift-intensive.ru/api/static/images/cars/volkswagen-polo/volkswagen-polo-cover.webp"
-            )
-        }
-    }
-}
+)

@@ -58,4 +58,9 @@ dependencies {
 
     implementation(libs.dagger)
     ksp(libs.dagger.compiler)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+
+    implementation(libs.kotlinx.serialization.json)
 }
