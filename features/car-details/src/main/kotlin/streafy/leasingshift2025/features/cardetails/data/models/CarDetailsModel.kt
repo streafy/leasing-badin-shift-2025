@@ -1,0 +1,20 @@
+package streafy.leasingshift2025.features.cardetails.data.models
+
+
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class CarDetailsModel(
+    @SerialName("id") val id: String,
+    @SerialName("name") val name: String,
+    @SerialName("brand") val brand: BrandModel,
+    @SerialName("media") val media: List<MediaModel>,
+    @SerialName("transmission") val transmission: TransmissionModel,
+    @SerialName("price") val price: Int,
+    @SerialName("location") val location: String,
+    @SerialName("color") val color: ColorModel,
+    @SerialName("bodyType") val bodyType: BodyTypeModel,
+    @SerialName("steering") val steering: SteeringModel,
+    @SerialName("rents") val rents: List<RentModel>,
+)

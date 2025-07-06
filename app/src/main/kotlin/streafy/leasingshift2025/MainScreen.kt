@@ -8,6 +8,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
+import streafy.leasingshift2025.features.cardetails.presentation.CarDetailsScreen
+import streafy.leasingshift2025.features.cardetails.navigation.CarDetailsRoute
 import streafy.leasingshift2025.features.carscatalog.navigation.CarsCatalogFiltersRoute
 import streafy.leasingshift2025.features.carscatalog.navigation.CarsCatalogRoute
 import streafy.leasingshift2025.features.carscatalog.presentation.screens.CarsCatalogFiltersScreen
@@ -32,6 +35,11 @@ fun MainScreen(
             }
             composable<CarsCatalogFiltersRoute> {
                 CarsCatalogFiltersScreen()
+            }
+            composable<CarDetailsRoute> {
+                val destination = it.toRoute<CarDetailsRoute>()
+
+                CarDetailsScreen(destination.id, destination.rentStart, destination.rentEnd)
             }
         }
     }

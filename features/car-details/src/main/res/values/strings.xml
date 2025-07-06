@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="car_details_characteristics">Характеристики</string>
+    <string name="car_details_transmission">Коробка передач</string>
+    <string name="car_details_steering">Сторона руля</string>
+    <string name="car_details_body_type">Тип кузова</string>
+    <string name="car_details_color">Цвет</string>
+    <string name="car_details_price">Стоимость</string>
+    <string name="car_details_total_pattern">Итого: %1$s ₽</string>
+    <string name="car_details_rent_dates_pattern">Аренда: %1$s</string>
+    <string name="car_details_back">Назад</string>
+    <string name="car_details_book">Забронировать</string>
+    <string name="car_details_days_pattern">%1$s (%2$s дней)</string>
+
+    <plurals name="car_details_days_plurals">
+        <item quantity="zero">0 дней</item>
+        <item quantity="one">%1$d день</item>
+        <item quantity="two">%1$d дня</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дней</item>
+    </plurals>
+</resources>
