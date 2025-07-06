@@ -2,9 +2,11 @@ package streafy.leasingshift2025.di
 
 import dagger.Binds
 import dagger.Module
+import streafy.leasingshift2025.features.cardetails.navigation.CarDetailsRouter
 import streafy.leasingshift2025.features.carscatalog.navigation.CarsCatalogRouter
 import streafy.leasingshift2025.navigation.GlobalRouter
 import streafy.leasingshift2025.navigation.GlobalRouterImpl
+import streafy.leasingshift2025.navigation.featurerouter.CarDetailsRouterImpl
 import streafy.leasingshift2025.navigation.featurerouter.CarsCatalogRouterImpl
 import streafy.leasingshift2025.shared.di.ApplicationScope
 
@@ -18,4 +20,8 @@ interface NavigationModule {
     @ApplicationScope
     @Binds
     fun bindCarsCatalogRouter(impl: CarsCatalogRouterImpl): CarsCatalogRouter
+
+    @ApplicationScope
+    @Binds
+    fun bindCarDetailsRouter(impl: CarDetailsRouterImpl): CarDetailsRouter
 }

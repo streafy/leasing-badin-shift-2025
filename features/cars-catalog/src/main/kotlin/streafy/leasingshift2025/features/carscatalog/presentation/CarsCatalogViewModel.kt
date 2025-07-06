@@ -29,7 +29,9 @@ class CarsCatalogViewModel @Inject constructor(
     }
 
     fun openCarCard(id: String) {
-        //TODO
+        val now = System.currentTimeMillis()
+        val afterTenDays = now + 86400000 * 10
+        router.openCarDetails(id, now, afterTenDays)
     }
 
     fun openFiltersScreen() {
