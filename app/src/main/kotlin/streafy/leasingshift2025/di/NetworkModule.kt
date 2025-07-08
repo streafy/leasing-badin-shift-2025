@@ -7,9 +7,8 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
+import streafy.leasingshift2025.shared.BuildConfig
 import streafy.leasingshift2025.shared.di.ApplicationScope
-
-const val BASE_URL = "https://shift-intensive.ru/api/"
 
 @Module
 class NetworkModule {
@@ -21,7 +20,7 @@ class NetworkModule {
         val jsonConverterFactory = Json.asConverterFactory(contentType)
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(jsonConverterFactory)
             .client(okHttpClient)
             .build()
