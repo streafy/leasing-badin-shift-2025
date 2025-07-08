@@ -2,6 +2,7 @@ package streafy.leasingshift2025.features.carscatalog.data
 
 import streafy.leasingshift2025.features.carscatalog.data.models.CarModel
 import streafy.leasingshift2025.features.carscatalog.domain.Car
+import streafy.leasingshift2025.shared.BuildConfig
 import streafy.leasingshift2025.shared.di.ApplicationScope
 import javax.inject.Inject
 
@@ -14,7 +15,7 @@ class CarModelConverter @Inject constructor() {
             name = name,
             price = price,
             transmission = transmission.toString(),
-            imageUrl = "https://shift-intensive.ru/api${media.first().url}"
+            imageUrl = "${BuildConfig.BASE_URL}${media.first().url}"
         )
     }
 }
