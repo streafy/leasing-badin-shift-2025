@@ -3,6 +3,12 @@ package streafy.leasingshift2025.features.carscatalog.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import streafy.leasingshift2025.shared.data.models.BodyTypeModel
+import streafy.leasingshift2025.shared.data.models.BrandModel
+import streafy.leasingshift2025.shared.data.models.ColorModel
+import streafy.leasingshift2025.shared.data.models.MediaModel
+import streafy.leasingshift2025.shared.data.models.SteeringModel
+import streafy.leasingshift2025.shared.data.models.TransmissionModel
 
 @Serializable
 data class CarModel(

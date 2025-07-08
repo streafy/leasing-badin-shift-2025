@@ -1,5 +1,4 @@
-package streafy.leasingshift2025.features.cardetails.data.models
-
+package streafy.leasingshift2025.shared.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
